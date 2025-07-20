@@ -1,0 +1,96 @@
+<!-- templates/search_bus.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Buses | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-section {
+      max-width: 500px;
+      margin: 100px auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      color: #333;
+      text-align: left;
+    }
+
+    select,
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.95rem;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #00b894, #00cec9);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #00cec9, #00b894);
+    }
+  </style>
+</head>
+<body>
+  <div class="form-section">
+    <h2>Search Buses</h2>
+    <form method="POST" action="{{ url_for('search_bus') }}">
+      <label for="from">From</label>
+      <select name="from" id="from" required>
+        <option value="" disabled selected>Select source</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Hyderabad">Hyderabad</option>
+      </select>
+
+      <label for="to">To</label>
+      <select name="to" id="to" required>
+        <option value="" disabled selected>Select destination</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Kolkata">Kolkata</option>
+      </select>
+
+      <label for="date">Travel Date</label>
+      <input type="date" name="date" id="date" required />
+      <label>Seats</label>
+      <input type="number" name="seats" placeholder="e.g. 2" required />
+
+      <button type="submit">Search Buses</button>
+    </form>
+  </div>
+</body>
+</html>

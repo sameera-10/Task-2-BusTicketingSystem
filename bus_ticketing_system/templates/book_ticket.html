@@ -1,0 +1,127 @@
+<!-- templates/book_ticket.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Ticket | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <style>
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e0e0e0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      background: #ffffff;
+      padding: 40px 35px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #222;
+      font-size: 1.9rem;
+    }
+
+    label {
+      display: block;
+      color: #222;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      margin-top: 18px;
+    }
+
+    select,
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      color: #222;
+      transition: border-color 0.3s;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: #00c6ff;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 25px;
+      background-color: #00c6ff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #009ace;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #222;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Bus Ticket Booking</h2>
+    <form method="POST" action="{{ url_for('book_ticket') }}">
+      <label for="from">From</label>
+      <select name="from" id="from" required>
+        <option value="" disabled selected>Select source</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Hyderabad">Hyderabad</option>
+      </select>
+
+      <label for="to">To</label>
+      <select name="to" id="to" required>
+        <option value="" disabled selected>Select destination</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Kolkata">Kolkata</option>
+      </select>
+
+      <label for="date">Travel Date</label>
+      <input type="date" name="date" id="date" required>
+
+      <label for="seats">Seats</label>
+      <input type="number" name="seats" id="seats" min="1" max="10" placeholder="e.g. 2" required>
+
+      <button type="submit">Book Now</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}" class="back-link">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

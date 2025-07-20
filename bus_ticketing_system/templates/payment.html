@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #dff9fb, #c7ecee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .payment-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2d3436;
+    }
+
+    .details p {
+      margin: 8px 0;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 5px;
+      font-size: 0.95rem;
+    }
+
+    button {
+      background-color: #0984e3;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin-top: 25px;
+      width: 100%;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0652dd;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-box">
+    <h2>Payment</h2>
+    <div class="details">
+      <p><strong>Bus:</strong> {{ booking.bus_name }}</p>
+      <p><strong>From:</strong> {{ booking.from_city }}</p>
+      <p><strong>To:</strong> {{ booking.to_city }}</p>
+      <p><strong>Date:</strong> {{ booking.travel_date }}</p>
+      <p><strong>Fare:</strong> ₹{{ booking.price }}</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('confirm_payment') }}">
+      <label for="card_number">Card Number</label>
+      <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+
+      <label for="card_holder">Card Holder</label>
+      <input type="text" id="card_holder" name="card_holder" placeholder="John Doe" required>
+
+      <label for="cvv">CVV</label>
+      <input type="number" id="cvv" name="cvv" placeholder="123" required>
+
+      <label for="expiry">Expiry Date</label>
+      <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+
+      <!-- Pass booking details as hidden fields -->
+      <input type="hidden" name="bus_name" value="{{ booking.bus_name }}">
+      <input type="hidden" name="from_city" value="{{ booking.from_city }}">
+      <input type="hidden" name="to_city" value="{{ booking.to_city }}">
+      <input type="hidden" name="travel_date" value="{{ booking.travel_date }}">
+      <input type="hidden" name="price" value="{{ booking.price }}">
+      <input type="hidden" name="seats" value="{{ booking.seats }}">
+
+      <button type="submit">Confirm Payment</button>
+    </form>
+  </div>
+</body>
+</html>

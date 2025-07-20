@@ -1,0 +1,80 @@
+<!-- templates/view_bookings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Bookings | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <style>
+    .booking-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-table th, .booking-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      color: #333;
+    }
+
+    .booking-table th {
+      background-color: #00c6a9;
+      color: white;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="glass-card form-section">
+      <h2>My Bookings</h2>
+
+      {% if bookings %}
+      <table class="booking-table">
+        <thead>
+          <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Travel Date</th>
+            <th>Seats</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in bookings %}
+          <tr>
+            <td>{{ b.from }}</td>
+            <td>{{ b.to }}</td>
+            <td>{{ b.date }}</td>
+            <td>{{ b.seats }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p style="margin-top: 20px;">No bookings yet. Start booking your first trip!</p>
+      {% endif %}
+
+      <a href="{{ url_for('dashboard') }}" class="back-link">← Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

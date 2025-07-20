@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .dashboard-box {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-box h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .dashboard-box p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-actions {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .action-card {
+      flex: 1 1 calc(33.333% - 20px);
+      background: #f5f6fa;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s ease;
+      border: 1px solid #e2e2e2;
+    }
+
+    .action-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .action-card i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #00b894;
+    }
+
+    .action-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #2d3436;
+    }
+
+    .action-card a {
+      display: inline-block;
+      padding: 10px 18px;
+      background-color: #0984e3;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .action-card a:hover {
+      background-color: #0652dd;
+    }
+
+    .logout-card {
+      background-color: #ffecec;
+      border: 1px solid #f5c2c7;
+    }
+
+    .logout-card i {
+      color: #d63031;
+    }
+
+    .logout-card a {
+      background-color: #d63031;
+    }
+
+    .logout-card a:hover {
+      background-color: #b71515;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <div class="dashboard-box">
+      <h2>Welcome to Your Dashboard</h2>
+      <p>Plan, book, and manage your bus journeys with ease.</p>
+
+      <div class="dashboard-actions">
+        <!-- Step 1: Start Booking -->
+        <div class="action-card">
+          <i>🚌</i>
+          <h3>Start Booking</h3>
+          <a href="{{ url_for('search_bus') }}">Search Buses</a>
+        </div>
+
+        <!-- My Bookings -->
+        <div class="action-card">
+          <i>📑</i>
+          <h3>My Bookings</h3>
+          <a href="{{ url_for('view_bookings') }}">View Tickets</a>
+        </div>
+
+        <!-- Logout -->
+        <div class="action-card logout-card">
+          <i>🚪</i>
+          <h3>Logout</h3>
+          <a href="{{ url_for('logout') }}">Sign Out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="background">
+    <div class="glass-card">
+      <h1>🚌 Welcome to BusConnect</h1>
+      <p>Book your travel tickets securely and effortlessly.</p>
+      <div class="btn-group">
+        <a href="{{ url_for('login') }}" class="btn login-btn">Login</a>
+        <a href="{{ url_for('signup') }}" class="btn signup-btn">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

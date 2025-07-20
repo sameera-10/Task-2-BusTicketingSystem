@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available Buses | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .background {
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .bus-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .bus-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 300px;
+      transition: 0.3s;
+    }
+
+    .bus-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .bus-card h3 {
+      margin-bottom: 10px;
+      color: #007bff;
+    }
+
+    .bus-card p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .bus-card form {
+      margin-top: 15px;
+    }
+
+    .bus-card button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .bus-card button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <h2>Available Buses from {{ from_city }} to {{ to_city }} on {{ travel_date }}</h2>
+    
+    <div class="bus-container">
+      {% for bus in buses %}
+        <div class="bus-card">
+          <h3>{{ bus.name }}</h3>
+          <p><strong>Departure:</strong> {{ bus.time }}</p>
+          <p><strong>Price:</strong> ₹{{ bus.price }}</p>
+
+          <form method="POST" action="{{ url_for('select_bus') }}">
+            <input type="hidden" name="bus_id" value="{{ bus.id }}" />
+            <input type="hidden" name="from_city" value="{{ from_city }}" />
+            <input type="hidden" name="to_city" value="{{ to_city }}" />
+            <input type="hidden" name="travel_date" value="{{ travel_date }}" />
+            <input type="hidden" name="price" value="{{ bus.price }}" />
+            <input type="hidden" name="bus_name" value="{{ bus.name }}" />
+            <input type="hidden" name="seats" value="{{ seats }}" />
+            <button type="submit">Select</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>

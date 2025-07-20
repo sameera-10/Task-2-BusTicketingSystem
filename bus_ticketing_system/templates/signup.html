@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Cloud Bus Ticketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="background">
+    <form class="glass-card form-card" method="POST" action="/signup">
+      <h2>Create Your Account 📝</h2>
+      <p>Sign up to book your journey</p>
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit" class="btn signup-btn full-width">Sign Up</button>
+      <p class="switch-link">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    </form>
+  </div>
+</body>
+</html>
